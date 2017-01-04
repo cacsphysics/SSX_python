@@ -247,10 +247,10 @@ class ssx_data(ssx_base):
 
     def _processFilename(self):
         """Construct full filename on local computer."""
-        #basename = "%s/%s/%sr%i-%s%s" % (self.runYear, self.runDate,
-        #    self.runDate, int(self.runNumber), self.fileString, self.fileExt)
-        basename = "%s\%s\%sr%i-%s%s" % (self.runYear, self.runDate,
+        basename = "%s/%s/%sr%i-%s%s" % (self.runYear, self.runDate,
             self.runDate, int(self.runNumber), self.fileString, self.fileExt)
+        #basename = "%s\%s\%sr%i-%s%s" % (self.runYear, self.runDate,
+        #    self.runDate, int(self.runNumber), self.fileString, self.fileExt)
         self.filename = ssxutil.ssxPath(basename,'data')
 
     def _processRemFilename(self):
