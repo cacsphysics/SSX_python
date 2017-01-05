@@ -26,8 +26,8 @@ import matplotlib.pylab as plt
 #plt.plot(timeb,b[0,0,:])
 #plt.xlabel('Time [us]')
 #plt.ylabel('B [G]')
-j = 18
-k = 19
+j = 8
+k = 9
 cosine = np.zeros(7391)
 # Standard cos(angle) between two vectors calculation
 for i in range(0,7391):
