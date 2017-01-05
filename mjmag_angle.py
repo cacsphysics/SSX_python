@@ -26,18 +26,18 @@ import matplotlib.pylab as plt
 #plt.plot(timeb,b[0,0,:])
 #plt.xlabel('Time [us]')
 #plt.ylabel('B [G]')
-j = 24
-k = 24
+j = 18
+k = 19
 cosine = np.zeros(7391)
 # Standard cos(angle) between two vectors calculation
 for i in range(0,7391):
     cosine[i] = (b[0,j,i]*b[0,k,i] + b[1,j,i]*b[1,k,i])/(bmod[j,i]*bmod[k,i])
 
-angle = np.arccos(cosine)
+angle = (np.arccos(cosine))*180/np.pi
 
 plt.figure()
 plt.plot(timeb, angle)
 plt.xlabel('Time [us]')
-plt.ylabel('phi [rads]')
-plt.ylim(-0.5,3.5)
+plt.ylabel('phi [degrees]')
+#plt.ylim(-10,185)
 plt.savefig('Position_'+str(j) + str(k)+'_phase_diff.pdf')
