@@ -15,7 +15,7 @@ shot=92
 #bmod = modulus of b for doublets and triplets
 time,bdot,timeb,b,bmod = mj.process_mjmag_data(day+str(shot))
 
-plt.figure()
-plt.plot(timeb,b[0,0,:])
-plt.xlabel('Time [us]')
-plt.ylabel('B [G]')
+#plt.figure()
+#plt.plot(timeb,b[0,0,:])
+#plt.xlabel('Time [us]')
+#plt.ylabel('B [G]')
