@@ -7,9 +7,10 @@ import matplotlib.pylab as plt
 
 def process_mjmag_data(shot):
     data = hdr.getMJMagData(shot)
-
+	
     #recast array into [3,25]
     Bdot25 = np.zeros([3,25,8192])
+    # Note the number of probes for each position
     #1
     Bdot25[0,0,:]=data.Bdot[0,0,:]
     Bdot25[1,0,:]=data.Bdot[1,0,:]
