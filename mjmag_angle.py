@@ -7,12 +7,12 @@ determine the angles between two vector positions.
 """
 #mjmag_angle.py
 
-import process_mjmag_data as mj
+#import process_mjmag_data as mj
 import numpy as np
 import matplotlib.pylab as plt
 
-day='123016'
-shot=92
+#day='123016'
+#shot=92
 
 #load mj probe data [xyz,position,timestep]
 #time = time index [8192]
@@ -20,16 +20,18 @@ shot=92
 #timeb = time index for integrated data [8191]
 #b = integrated magnetic field data [3,25,8192]
 #bmod = modulus of b for doublets and triplets
-time,bdot,timeb,b,bmod = mj.process_mjmag_data(day+str(shot))
+#time,bdot,timeb,b,bmod = mj.process_mjmag_data(day+str(shot))
 
 #plt.figure()
 #plt.plot(timeb,b[0,0,:])
 #plt.xlabel('Time [us]')
 #plt.ylabel('B [G]')
+j = 24
+k = 24
 cosine = np.zeros(7391)
 # Standard cos(angle) between two vectors calculation
 for i in range(0,7391):
-    cosine[i] = (b[0,8,i]*b[0,9,i] + b[1,8,i]*b[1,9,i])/(bmod[8,i]*bmod[9,i])
+    cosine[i] = (b[0,j,i]*b[0,k,i] + b[1,j,i]*b[1,k,i])/(bmod[j,i]*bmod[k,i])
 
 angle = np.arccos(cosine)
 
@@ -38,4 +40,4 @@ plt.plot(timeb, angle)
 plt.xlabel('Time [us]')
 plt.ylabel('phi [rads]')
 plt.ylim(-0.5,3.5)
-plt.savefig('Position_89_phase_diff.pdf')
+plt.savefig('Position_'+str(j) + str(k)+'_phase_diff.pdf')
