@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jan  5 10:43:57 2017
-
+This file was created because I did not want to rerun the data reduction.
 @author: ccartagena
 """
 
