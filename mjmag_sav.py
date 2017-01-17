@@ -20,7 +20,7 @@ shot=92
 #timeb = time index for integrated data [8191]
 #b = integrated magnetic field data [3,25,8192]
 #bmod = modulus of b for doublets and triplets
-time,bdot,timeb,b,bmod = mj.process_mjmag_data(day+str(shot))
+time,bdot,timeb,b,bmod,fulldata = mj.process_mjmag_data(day+str(shot))
 
 with open('mag123016_92_data.pickle','w') as f:
     pickle.dump([time,bdot,timeb,b,bmod],f)
