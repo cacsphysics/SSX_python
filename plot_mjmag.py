@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pylab as plt
 
 day='123016'
-shot=1
+shot=92
 
 #load mj probe data [xyz,position,timestep]
 #time = time index [8192]
