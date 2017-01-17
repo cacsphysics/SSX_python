@@ -9,7 +9,7 @@ Created on Mon Jan  9 14:25:42 2017
 import pickle
 import numpy as np
 import scipy.optimize as optimization
-#import math as m
+import math as m
 #import matplotlib.pylab as plt
 
 
@@ -19,7 +19,7 @@ with open('mag123016_92_data.pickle') as f:
 instant_magn = np.zeros(20)
 
 for i in range(0,20):
-    instant_magn[i] = b[1,i,0]
+    instant_magn[i] = b[1,i,1000]
 
 position = np.zeros(20)
 
@@ -27,7 +27,7 @@ for i in range(0,20):
     position[i] = i*1.5
 
 mag_uncertainty = instant_magn * 0.1
-xo = np.array([ 0.03212442, 0.00459985, -0.00703278])
+xo = np.array([ 0.67609157, 2.50541118, -0.56249263])
 
 def func(x,a,b,c):
     return a * np.sin(b*x + c)
