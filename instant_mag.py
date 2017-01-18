@@ -2,34 +2,54 @@
 # -*- coding: utf-8 -*-
 """
 Created on Mon Jan  9 14:25:42 2017
-
+Plotting the instanteous magnetic field
 @author: ccartagena
 """
 
 import pickle
 import numpy as np
-import scipy.optimize as optimization
-import math as m
-#import matplotlib.pylab as plt
+#import scipy.optimize as optimization
+#import math as m
+import matplotlib.pylab as plt
 
-
+#--------------------------------------
+# Loading the structured data
+#--------------------------------------
 with open('mag123016_92_data.pickle') as f:
     time,bdot,timeb,b,bmod = pickle.load(f)
-    
-instant_magn = np.zeros(20)
+#--------------------------------------
 
-for i in range(0,20):
-    instant_magn[i] = b[1,i,1000]
+#--------------------------------------
+# Defining position array in cm
+#--------------------------------------
+position = np.arange(19) * 1.5
+#--------------------------------------
 
-position = np.zeros(20)
+plt.figure(1)
+plt.clf()
+plt.plot(position,b[0,0:19,1400],'o',linestyle = 'dotted' )
+plt.xlabel('Position [cm]')
+plt.ylabel('B [G]')
 
-for i in range(0,20):
-    position[i] = i*1.5
+plt.figure(2)
+plt.clf()
+plt.plot(position,b[0,0:19,1401],'o',linestyle = 'dotted' )
+plt.xlabel('Position [cm]')
+plt.ylabel('B [G]')
 
-mag_uncertainty = instant_magn * 0.1
-xo = np.array([ 0.67609157, 2.50541118, -0.56249263])
+plt.figure(3)
+plt.clf()
+plt.plot(position,b[0,0:19,1402],'o',linestyle = 'dotted' )
+plt.xlabel('Position [cm]')
+plt.ylabel('B [G]')
+"""
+This was the curve fit attempt 
 
-def func(x,a,b,c):
-    return a * np.sin(b*x + c)
+#mag_uncertainty = instant_magn * 0.1
+#xo = np.array([ 0.67609157, 2.50541118, -0.56249263])
 
-print optimization.curve_fit(func, position, instant_magn,xo, mag_uncertainty)
+#def func(x,a,b,c):
+#    return a * np.sin(b*x + c)
+
+#print optimization.curve_fit(func, position, instant_magn,xo, mag_uncertainty)
+"""
