@@ -13,9 +13,9 @@ shot=92
 #timeb = time index for integrated data [8191]
 #b = integrated magnetic field data [3,25,8192]
 #bmod = modulus of b for doublets and triplets
-time,bdot,timeb,b,bmod = mj.process_mjmag_data(day+str(shot))
+time,bdot,timeb,b,bmod,fulldata = mj.process_mjmag_data(day+str(shot))
 
 plt.figure()
-plt.plot(timeb,b[0,0,:])
+plt.plot(timeb,b[0,9,:])
 plt.xlabel('Time [us]')
 plt.ylabel('B [G]')
