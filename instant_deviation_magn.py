@@ -39,29 +39,116 @@ def timePerspective(div):
 
 #--------------------------------------
 # Averaging ten time steps from initial time step(istep) to
-# final time step(fstep).
+# final time step(fstep). x direction
 #--------------------------------------
-def magneticTimeAvg(istep,fstep):
-    bAvg = np.zeros(20)
+def xmagneticTimeAvg(istep,fstep):
+    xbAvg = np.zeros(20)
     for i in range(0,20):
         for j in range(istep,fstep):
-            bAvg[i] = bAvg[i] + b[0,i,j]/(fstep - istep + 1)
-    return bAvg
+            xbAvg[i] = xbAvg[i] + b[0,i,j]/(fstep - istep + 1)
+    return xbAvg
 #--------------------------------------
 
+#--------------------------------------
+# Averaging ten time steps from initial time step(istep) to
+# final time step(fstep). y direction
+#--------------------------------------
+def ymagneticTimeAvg(istep,fstep):
+    ybAvg = np.zeros(20)
+    for i in range(0,20):
+        for j in range(istep,fstep):
+            ybAvg[i] = ybAvg[i] + b[1,i,j]/(fstep - istep + 1)
+    return ybAvg
+#--------------------------------------
 
 #--------------------------------------
 # the plotting of a set of data
 #--------------------------------------
-def sine_plot(pos,bAvg)
+def sine_plot(pos,bAvg,title):
     plt.figure()
     plt.clf()
-    plt.plot(position,bAvg,'o',linestyle = 'dotted' )
+    plt.plot(pos,bAvg,'o',linestyle = 'dotted' )
     #plt.plot(position,bAvg,'o')
     plt.xlabel('Position [cm]')
     plt.ylabel('B [G]')
+    plt.ylim(-600,600)
+    plt.title(title)
+    savefile = 'mjmag_' + title + '.png'
+    plt.savefig(savefile, dpi = 100, facecolor = 'w', edgecolor = 'k')
+    plt.close()
 #--------------------------------------
 
+#--------------------------------------
+# This function produces the figures for the  averages over
+# 100 steps. 
+#--------------------------------------
+def plot_100avg_xpos_mag(istep, fstep):
+    
+    pos = np.arange(20)*1.5
+    while(istep < fstep):
+        bAvg = xmagneticTimeAvg(istep, istep + 100)
+        title = 'x_' + str(istep) + '-' + str(istep + 100)
+        sine_plot(pos,bAvg,title)
+        istep = istep + 100
+#--------------------------------------
+
+#--------------------------------------
+# This function produces the figures for the averages over
+# 50 steps.
+#--------------------------------------
+def plot_50avg_xpos_mag(istep, fstep):
+    
+    pos = np.arange(20)*1.5
+    while(istep < fstep):
+        bAvg = xmagneticTimeAvg(istep, istep + 50)
+        title = 'x_' + str(istep) + '-' + str(istep + 50)
+        sine_plot(pos,bAvg,title)
+        istep = istep + 50
+#--------------------------------------
+
+#--------------------------------------
+# This function produces the figures for the  averages over
+# 100 steps. 
+#--------------------------------------
+def plot_100avg_ypos_mag(istep, fstep):
+    
+    pos = np.arange(20)*1.5
+    while(istep < fstep):
+        bAvg = ymagneticTimeAvg(istep, istep + 100)
+        title = 'y_' + str(istep) + '-' + str(istep + 100)
+        sine_plot(pos,bAvg,title)
+        istep = istep + 100
+#--------------------------------------
+
+#--------------------------------------
+# This function produces the figures for the averages over
+# 50 steps.
+#--------------------------------------
+def plot_50avg_ypos_mag(istep, fstep):
+    
+    pos = np.arange(20)*1.5
+    while(istep < fstep):
+        bAvg = ymagneticTimeAvg(istep, istep + 50)
+        title = 'y_' + str(istep) + '-' + str(istep + 50)
+        sine_plot(pos,bAvg,title)
+        istep = istep + 50
+#--------------------------------------
+"""
+#--------------------------------------
+# This function produces the figures for the averages over
+# 80 steps.
+#--------------------------------------
+def plot_80avg_xpos_mag(istep, fstep):
+    
+    pos = np.arange(20)*1.5
+    while(istep < fstep):
+        bAvg = magneticTimeAvg(istep, istep + 80)
+        title = str(istep) + '-' + str(istep + 80)
+        sine_plot(pos,bAvg,title)
+        istep = istep + 80
+#--------------------------------------
+"""
+"""
 #--------------------------------------
 # Defining the time averaged magnetic field
 # and position vectors
@@ -70,7 +157,7 @@ bAvg = magneticTimeAvg(2500,2600)
 position = np.arange(20)*1.5
 #--------------------------------------
 
-"""
+
 #--------------------------------------
 # Plotting to obtain a visual of the data
 #--------------------------------------

@@ -9,12 +9,14 @@ Created on Tue Jan 10 23:26:23 2017
 import numpy as np
 import matplotlib.pylab as plt
 
-plt.figure(4)
+plt.figure()
 plt.clf()
 plt.plot(position,bAvg,'o',linestyle = 'dotted' )
 #plt.plot(position,bAvg,'o')
 plt.xlabel('Position [cm]')
 plt.ylabel('B [G]')
+c = 'Check This Out'
+plt.title(c)
 
 distance = np.zeros(1050)
 

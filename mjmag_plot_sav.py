@@ -15,9 +15,9 @@ with open('mag123016_92_data.pickle') as f:
 
 for j in range(0,20):   
     plt.figure()
-    plt.title('X Probe ' + str(j + 1))
-    plt.plot(timeb,b[0,j,:])
+    plt.title('Y Probe ' + str(j + 1))
+    plt.plot(timeb,b[1,j,:])
     plt.xlabel('Time [us]')
     plt.ylabel('B [G]')
-    plt.savefig('X_Probe_' + str(j + 1))
+    plt.savefig('Y_Probe_' + str(j + 1))
     plt.close()
