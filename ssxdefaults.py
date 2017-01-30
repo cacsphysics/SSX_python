@@ -28,7 +28,7 @@ from pylab import figure
 #else:
 #	base = os.path.expanduser('~/Documents/SSX')
 
-base = '/Users/ccartagena/Desktop/'
+base = '/Users/ccartagena/Carlos/'
 
 # figure sizes - should work in an module that import ssx_py_utils as ssxutil
 
