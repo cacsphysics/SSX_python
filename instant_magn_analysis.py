@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Jan 17 09:21:35 2017
- This script is to be used to determine the limit of averaging
+ This is the beginging of a library focusing on analysis
 @author: ccartagena
 """
 
@@ -64,7 +64,7 @@ def ymagneticTimeAvg(istep,fstep):
 #--------------------------------------
 # the plotting of a set of data
 #--------------------------------------
-def sine_plot(pos,bAvg,title):
+def sine_plot(pos, bAvg, title):
     plt.figure()
     plt.clf()
     plt.plot(pos,bAvg,'o',linestyle = 'dotted' )
@@ -74,17 +74,69 @@ def sine_plot(pos,bAvg,title):
     plt.ylim(-600,600)
     plt.title(title)
     savefile = 'mjmag_' + title + '.png'
-    plt.savefig(savefile, dpi = 100, facecolor = 'w', edgecolor = 'k')
+    plt.savefig(savefile, facecolor = 'w', edgecolor = 'k')
     plt.close()
 #--------------------------------------
-
+#--------------------------------------
+# the plotting of a set of x and y data
+#--------------------------------------
+def sine_plot(pos, xbAvg, ybAvg, title):
+    
+    fig = plt.figure(num = 2)
+    
+    ax1 = fig.add_subplot(2,1,1)
+    ax2 = fig.add_subplot(2,1,2)
+    
+    #fig.suptitle(title)
+    
+    ax1.axis([0,20*1.5,-600,600])
+    ax2.axis([0,20*1.5,-600,600])
+    
+    ax1.minorticks_on()
+    ax2.minorticks_on()
+    
+    for tick in ax1.xaxis.get_major_ticks():
+        tick.label1On = False
+        tick.label2On = False
+    
+    ax1.set_ylabel('B [G]')
+    ax2.set_ylabel('B [G]')
+    ax2.set_xlabel('Position [cm]')
+    
+    fig.text(0.45,0.5, title)
+    ax1.text(0.05,0.8, r'(x)', transform = ax1.transAxes)
+    ax2.text(0.05,0.8, r'(y)', transform = ax2.transAxes)
+    
+    
+    ax1.plot(pos, xbAvg, 'ro', linestyle = 'dotted')
+    ax2.plot(pos, ybAvg, 'bo', linestyle = 'dotted')
+    
+    savefile = 'mjmag_' + title + '.png'
+    fig.savefig(savefile)
+    plt.close(fig)
+"""    plt.plot(pos, xbAvg, 'o', linestyle = 'dotted' )
+    #plt.plot(position,bAvg,'o')
+    #plt.xlabel('Position [cm]')
+    plt.ylabel('B [G]')
+    plt.ylim(-600, 600)
+    plt.title(title)
+    #savefile = 'mjmag_' + title + '.png'
+    #plt.savefig(savefile, facecolor = 'w', edgecolor = 'k')
+    
+    plt.subplot(2,1,2)
+    plt.plot(pos, ybAvg, 'o', linestyle = 'dotted')
+    plt.ylim(-600, 600)
+    plt.xlabel('Position [cm]')
+    plt.show()
+    #plt.close()
+"""
 #--------------------------------------
 # This function produces the figures for the  averages over
 # 100 steps. 
 #--------------------------------------
 def plot_100avg_xpos_mag(istep, fstep):
     
-    pos = np.arange(20)*1.5
+    pos = np.arange(20) * 1.5
     while(istep < fstep):
         bAvg = xmagneticTimeAvg(istep, istep + 100)
         title = 'x_' + str(istep) + '-' + str(istep + 100)
@@ -98,7 +150,7 @@ def plot_100avg_xpos_mag(istep, fstep):
 #--------------------------------------
 def plot_50avg_xpos_mag(istep, fstep):
     
-    pos = np.arange(20)*1.5
+    pos = np.arange(20) * 1.5
     while(istep < fstep):
         bAvg = xmagneticTimeAvg(istep, istep + 50)
         title = 'x_' + str(istep) + '-' + str(istep + 50)
@@ -112,7 +164,7 @@ def plot_50avg_xpos_mag(istep, fstep):
 #--------------------------------------
 def plot_100avg_ypos_mag(istep, fstep):
     
-    pos = np.arange(20)*1.5
+    pos = np.arange(20) * 1.5
     while(istep < fstep):
         bAvg = ymagneticTimeAvg(istep, istep + 100)
         title = 'y_' + str(istep) + '-' + str(istep + 100)
@@ -126,12 +178,27 @@ def plot_100avg_ypos_mag(istep, fstep):
 #--------------------------------------
 def plot_50avg_ypos_mag(istep, fstep):
     
-    pos = np.arange(20)*1.5
+    pos = np.arange(20) * 1.5
     while(istep < fstep):
         bAvg = ymagneticTimeAvg(istep, istep + 50)
         title = 'y_' + str(istep) + '-' + str(istep + 50)
         sine_plot(pos,bAvg,title)
         istep = istep + 50
+#--------------------------------------
+
+#--------------------------------------
+# This function produces the figures for the 
+# averages over 100 of x and y 
+#--------------------------------------
+def plot_100avg_xypos_mag(istep, fstep):
+    
+    pos = np.arange(20) * 1.5
+    while(istep < fstep):
+        xbAvg = xmagneticTimeAvg(istep, istep + 100)
+        ybAvg = ymagneticTimeAvg(istep, istep + 100)
+        title =  str(round(timeb[istep],1)) + '-' + str(round(timeb[istep + 100],1))+ 'us'
+        sine_plot(pos, xbAvg, ybAvg, title)
+        istep = istep + 100
 #--------------------------------------
 """
 #--------------------------------------
