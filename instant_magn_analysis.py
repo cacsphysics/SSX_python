@@ -64,7 +64,7 @@ def ymagneticTimeAvg(istep,fstep):
 #--------------------------------------
 # the plotting of a set of data
 #--------------------------------------
-def sine_plot(pos, bAvg, title):
+def sine_plot1(pos, bAvg, title):
     plt.figure()
     plt.clf()
     plt.plot(pos,bAvg,'o',linestyle = 'dotted' )
@@ -81,7 +81,7 @@ def sine_plot(pos, bAvg, title):
 #--------------------------------------
 # the plotting of a set of x and y data
 #--------------------------------------
-def sine_plot(pos, xbAvg, ybAvg, title):
+def sine_plot2(pos, xbAvg, ybAvg, title):
     
     fig = plt.figure(num = 2)
     
@@ -127,7 +127,7 @@ def plot_100avg_xpos_mag(istep, fstep):
     while(istep < fstep):
         bAvg = xmagneticTimeAvg(istep, istep + 100)
         title = 'x_' + str(istep) + '-' + str(istep + 100)
-        sine_plot(pos,bAvg,title)
+        sine_plot1(pos,bAvg,title)
         istep = istep + 100
 #--------------------------------------
 
@@ -141,7 +141,7 @@ def plot_50avg_xpos_mag(istep, fstep):
     while(istep < fstep):
         bAvg = xmagneticTimeAvg(istep, istep + 50)
         title = 'x_' + str(istep) + '-' + str(istep + 50)
-        sine_plot(pos,bAvg,title)
+        sine_plot1(pos,bAvg,title)
         istep = istep + 50
 #--------------------------------------
 
@@ -155,7 +155,7 @@ def plot_100avg_ypos_mag(istep, fstep):
     while(istep < fstep):
         bAvg = ymagneticTimeAvg(istep, istep + 100)
         title = 'y_' + str(istep) + '-' + str(istep + 100)
-        sine_plot(pos,bAvg,title)
+        sine_plot1(pos,bAvg,title)
         istep = istep + 100
 #--------------------------------------
 
@@ -169,7 +169,7 @@ def plot_50avg_ypos_mag(istep, fstep):
     while(istep < fstep):
         bAvg = ymagneticTimeAvg(istep, istep + 50)
         title = 'y_' + str(istep) + '-' + str(istep + 50)
-        sine_plot(pos,bAvg,title)
+        sine_plot1(pos,bAvg,title)
         istep = istep + 50
 #--------------------------------------
 
@@ -184,7 +184,7 @@ def plot_100avg_xypos_mag(istep, fstep):
         xbAvg = xmagneticTimeAvg(istep, istep + 100)
         ybAvg = ymagneticTimeAvg(istep, istep + 100)
         title =  str(round(timeb[istep],1)) + '-' + str(round(timeb[istep + 100],1))+ 'us'
-        sine_plot(pos, xbAvg, ybAvg, title)
+        sine_plot2(pos, xbAvg, ybAvg, title)
         istep = istep + 100
 #--------------------------------------
 """
@@ -198,7 +198,7 @@ def plot_80avg_xpos_mag(istep, fstep):
     while(istep < fstep):
         bAvg = magneticTimeAvg(istep, istep + 80)
         title = str(istep) + '-' + str(istep + 80)
-        sine_plot(pos,bAvg,title)
+        sine_plot1(pos,bAvg,title)
         istep = istep + 80
 #--------------------------------------
 """
