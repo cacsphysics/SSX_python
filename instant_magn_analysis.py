@@ -15,7 +15,7 @@ import matplotlib.pylab as plt
 #--------------------------------------
 # Loading the structured data
 #--------------------------------------
-with open('mag123016_92_data.pickle') as f:
+with open('Pickle_files/mag010617_21_data.pickle') as f:
     time,bdot,timeb,b,bmod = pickle.load(f)
 #--------------------------------------
 
@@ -90,8 +90,8 @@ def sine_plot2(pos, xbAvg, ybAvg, title):
     
     #fig.suptitle(title)
     
-    ax1.axis([0,20*1.5,-600,600])
-    ax2.axis([0,20*1.5,-600,600])
+    ax1.axis([0,20*1.5,-300,300])
+    ax2.axis([0,20*1.5,-300,300])
     
     ax1.minorticks_on()
     ax2.minorticks_on()

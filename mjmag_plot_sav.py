@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pylab as plt
 import pickle
 
-with open('mag123016_92_data.pickle') as f:
+with open('Pickle_files/mag010617_21_data.pickle') as f:
     time,bdot,timeb,b,bmod = pickle.load(f)
 
 for j in range(0,20):   

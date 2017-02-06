@@ -16,6 +16,6 @@ shot=92
 time,bdot,timeb,b,bmod,fulldata = mj.process_mjmag_data(day+str(shot))
 
 plt.figure()
-plt.plot(timeb,b[0,9,:])
+plt.plot(timeb,b[0,19,:])
 plt.xlabel('Time [us]')
 plt.ylabel('B [G]')

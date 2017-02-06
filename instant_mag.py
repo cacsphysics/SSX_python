@@ -15,7 +15,7 @@ import matplotlib.pylab as plt
 #--------------------------------------
 # Loading the structured data
 #--------------------------------------
-with open('mag123016_92_data.pickle') as f:
+with open('Pickle_files/mag123016_92_data.pickle') as f:
     time,bdot,timeb,b,bmod = pickle.load(f)
 #--------------------------------------
 
