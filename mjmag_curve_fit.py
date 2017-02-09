@@ -13,12 +13,14 @@ import matplotlib.pylab as plt
 import instant_magn_analysis as inmag
 
 
-
+date = '123016'
+shot = '92'
 
 #--------------------------------------
 # Loading the structured data
 #--------------------------------------
-with open('Pickle_files/mag123016_92_data.pickle') as f:
+with open('/Users/ccartagena/Carlos/Pickle_files/mag' 
+          + date + '_'+  shot +'_data.pickle') as f:
     time,bdot,timeb,b,bmod = pickle.load(f)
 #--------------------------------------
 
@@ -40,7 +42,8 @@ def sine_data1x(bAvg, pos, amp, waveNum, phase, title):
                               
     # Make a figure
     fig = plt.figure(num = 1)
-    fig.canvas.set_window_title('mjxmag_' + title + '_fit')
+    fig.canvas.set_window_title('mjxmag_' + date + '_' + shot + '_' 
+                                + title + '_fit')
     ax = fig.add_subplot(1,1,1)
     
     # Set axis ranges
@@ -84,7 +87,8 @@ def sine_data1y(bAvg, pos, amp, waveNum, phase, title):
                               
     # Make a figure
     fig = plt.figure(num = 1)
-    fig.canvas.set_window_title('mjymag_' + title + '_fit')
+    fig.canvas.set_window_title('mjymag_' + date + '_' + shot + '_' 
+                                + title + '_fit')
     ax = fig.add_subplot(1,1,1)
     
     # Set axis ranges
@@ -128,7 +132,8 @@ def sine_data2x(bAvg, pos, amp, waveNum, phase, shift, title):
                               
     # Make a figure
     fig = plt.figure(num = 1)
-    fig.canvas.set_window_title('mjxmag_' + title + 'us_fit')
+    fig.canvas.set_window_title('mjxmag_' + date + '_' + shot + '_' 
+                                + title + '_fit')
     ax = fig.add_subplot(1,1,1)
     
     # Set axis ranges
@@ -172,7 +177,8 @@ def sine_data2y(bAvg, pos, amp, waveNum, phase, shift, title):
                               
     # Make a figure
     fig = plt.figure(num = 1)
-    fig.canvas.set_window_title('mjymag_' + title + 'us_fit')
+    fig.canvas.set_window_title('mjymag_' + date + '_' + shot + '_' 
+                                + title + '_fit')
     ax = fig.add_subplot(1,1,1)
     
     # Set axis ranges

@@ -8,22 +8,67 @@ Created on Tue Jan 17 09:21:35 2017
 
 import pickle
 import numpy as np
-import scipy.optimize as optimization
-import math as m
+#import scipy.optimize as optimization
+#import math as m
+import process_mjmag_data as mj
 import matplotlib.pylab as plt
 
+"""
+################### All Functions ########################
+# Depend on the variables time, bdot, timeb , b and bmod #
+##########################################################
 
-date = '010617'
+ They are defined by using the mjmag_load function:
+ 
+ time,bdot,timeb,b,bmod = mjmag_load(date, shot)
+ 
+"""
+
+date = '123016'
 shot = '34'
+
+
+#--------------------------------------
+# The function saves the processes the data and saves 
+# it as a pickle file. 
+#--------------------------------------
+
+"""
+The data parameter must be a string corresponding to the month_day_year 
+without any delimiters, i.e. date = 123016 - 12/30/16
+
+The shot parameter is an integer which corresponds to the shot number.
+"""
+
+def mjmag_sav(date, shot):
+    
+    time,bdot,timeb,b,bmod,fulldata = mj.process_mjmag_data(date+str(shot))
+    
+    with open('/Users/ccartagena/Carlos/Pickle_files/mag' + date + '_'
+            + str(shot) + '_data.pickle','w') as f:
+        pickle.dump([time,bdot,timeb,b,bmod],f)
+#--------------------------------------
 
 #--------------------------------------
 # Loading the structured data
 #--------------------------------------
-with open('/Users/ccartagena/Carlos/Pickle_files/mag' 
-          + date + '_'+  shot +'_data.pickle') as f:
-    time,bdot,timeb,b,bmod = pickle.load(f)
-#--------------------------------------
 
+"""
+The data parameter must be a string corresponding to the month_day_year 
+without any delimiters, i.e. date = 123016 - 12/30/16
+
+The shot parameter is an integer which corresponds to the shot number.
+"""
+
+def mjmag_load(date, shot):
+    
+    with open('/Users/ccartagena/Carlos/Pickle_files/mag' 
+              + date + '_'+  str(shot) +'_data.pickle') as f:
+       time,bdot,timeb,b,bmod = pickle.load(f)
+    return time, bdot, timeb, b, bmod
+#--------------------------------------
+"""
+This function is not helpful. I am debating about deleting it.
 #--------------------------------------
 # The point of this chunk of code is to gain
 # a perspective of the time interval for averaging.
@@ -41,7 +86,7 @@ def timePerspective(div):
         i = i + 1
     return d, pos, i
 #--------------------------------------
-
+"""
 #--------------------------------------
 # Averaging ten time steps from initial time step(istep) to
 # final time step(fstep). x direction
@@ -95,8 +140,8 @@ def sine_plot2(pos, xbAvg, ybAvg, title):
     
     #fig.suptitle(title)
     
-    ax1.axis([0,20*1.5,-300,300])
-    ax2.axis([0,20*1.5,-300,300])
+    ax1.axis([0,20*1.5,-600,600])
+    ax2.axis([0,20*1.5,-600,600])
     
     ax1.minorticks_on()
     ax2.minorticks_on()
@@ -193,6 +238,7 @@ def plot_100avg_xypos_mag(istep, fstep):
         istep = istep + 100
 #--------------------------------------
 """
+80 steps is a random number with no significance.
 #--------------------------------------
 # This function produces the figures for the averages over
 # 80 steps.
