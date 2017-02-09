@@ -12,10 +12,15 @@ import scipy.optimize as optimization
 import math as m
 import matplotlib.pylab as plt
 
+
+date = '010617'
+shot = '34'
+
 #--------------------------------------
 # Loading the structured data
 #--------------------------------------
-with open('Pickle_files/mag010617_21_data.pickle') as f:
+with open('/Users/ccartagena/Carlos/Pickle_files/mag' 
+          + date + '_'+  shot +'_data.pickle') as f:
     time,bdot,timeb,b,bmod = pickle.load(f)
 #--------------------------------------
 
@@ -73,7 +78,7 @@ def sine_plot1(pos, bAvg, title):
     plt.ylabel('B [G]')
     plt.ylim(-600,600)
     plt.title(title)
-    savefile = 'mjmag_' + title + '.png'
+    savefile = 'mjmag_' + date + '_' + shot + '_' + title + '.png'
     plt.savefig(savefile, facecolor = 'w', edgecolor = 'k')
     plt.close()
 #--------------------------------------
@@ -112,7 +117,7 @@ def sine_plot2(pos, xbAvg, ybAvg, title):
     ax1.plot(pos, xbAvg, 'ro', linestyle = 'dotted')
     ax2.plot(pos, ybAvg, 'bo', linestyle = 'dotted')
     
-    savefile = 'mjmag_' + title + '.png'
+    savefile = 'mjmag_' + date + '_' + shot + '_' + title + '.png'
     fig.savefig(savefile)
     plt.close(fig)
 #--------------------------------------
