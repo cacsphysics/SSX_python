@@ -14,7 +14,7 @@ import instant_magn_analysis as inmag
 
 
 date = '123016'
-shot = '92'
+shot = '27'
 
 #--------------------------------------
 # Loading the structured data
@@ -240,11 +240,15 @@ def data_interval_y(istep, fstep, spoint, epoint):
 # Setting inital guesses and values
 #--------------------------------------
 
+
+#magWeight = 1/bAvg*0.1
+
 """
-#magWeight = bAvg*0.1
 #magWeight = np.array([1,1,2,1,1,1,6,10,6,10,10,6,6,10,6,6,6,10,6,6])        
 """
-bAvg, pos, title = data_interval_y(2300,2400,7,16)
+bAvg, pos, title = data_interval_x(2300,2400,7,17)
+
+#magWeight = (1/bAvg) * 0.1
 
 """
 magWeight = np.zeros(pos.size)
@@ -256,7 +260,7 @@ for i in range(1,pos.size + 1):
 # Note: The number of elements depend on the function used.
 #--------------------------------------
 #xo = np.array([300.0, 2*m.pi/3.5, 0.0,0.0])
-xo = np.array([200.0, 2*m.pi/0.95 , 0.0])
+xo = np.array([300.0, 2*m.pi/4.0, 0.0])
 #--------------------------------------
 
 #--------------------------------------
@@ -267,7 +271,7 @@ xo = np.array([200.0, 2*m.pi/0.95 , 0.0])
 
 #--------------------------------------
 #bou = [(10.0, 0, -m.pi,-10.0), (150.0, 4*m.pi, m.pi, 10.0)]
-bou = [(100.0, 0, -m.pi), (600.0, 4*m.pi, m.pi)]
+bou = [(100.0, 0.5, -m.pi), (600.0, 40, m.pi)]
 #--------------------------------------
 
 #--------------------------------------
@@ -277,19 +281,22 @@ bou = [(100.0, 0, -m.pi), (600.0, 4*m.pi, m.pi)]
 #--------------------------------------
 
 def func1(x,a,b,c):
+    return a * np.sin(2.0*m.pi/b * x + c)
+
+def func00(x,a,b,c):
     return a * np.sin(b * x + c)
 
 def func2(x,a,b,c,d):
-    return a * np.sin(b * x + c) + d
+    return a * np.sin(2.0*m.pi/b * x + c) + d
 #--------------------------------------
 
 
 #vari,comat = optimization.curve_fit(func1, pos, bAvg, p0 = xo,
-#                                 bounds = bou, sigma = magWeight)
+#                                bounds = bou, sigma = magWeight)
 
-vari,comat = optimization.curve_fit(func1, pos, bAvg, p0 = xo,
+vari,comat = optimization.curve_fit(func00, pos, bAvg, p0 = xo,
                                  bounds = bou)
 
 print vari, comat
 
-sine_data1y(bAvg, pos, vari[0], vari[1], vari[2], title)
+sine_data1x(bAvg, pos, vari[0], vari[1], vari[2], title)
