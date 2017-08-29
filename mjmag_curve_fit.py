@@ -207,7 +207,7 @@ def sine_data2y(bAvg, pos, amp, waveNum, phase, shift, title):
 #--------------------------------------
 """
  This function takes the averages of the time interval 
- fstep - istep and defines the spacial interval which 
+ fstep - istep and defines the special interval which
  to apply the curve fit, fpoint - epoint.
 """
 #--------------------------------------
@@ -256,7 +256,7 @@ for i in range(1,pos.size + 1):
     magWeight[-i] = (i+1)
 """
 #--------------------------------------
-# xo correspons to the intial guesses.
+# xo corresponds to the intial guesses.
 # Note: The number of elements depend on the function used.
 #--------------------------------------
 #xo = np.array([300.0, 2*m.pi/3.5, 0.0,0.0])
